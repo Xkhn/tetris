@@ -113,7 +113,9 @@
             #MiddleArea {
                 display: none;
             }
-
+            .Settingtitle {
+                display: none;
+            }
             #RankingArea {
                 position: fixed;
                 left: 0;
@@ -216,6 +218,9 @@
                 float: left;
                 width: 70%;
             }
+            #SettingArea{
+                display: none;
+            }
         }
 
         @media screen and (max-width: 768px) {
@@ -283,7 +288,23 @@
                 background: #ef9321;
                 border-radius: 10px;
             }
-
+            
+            #RightBottom{
+                margin-top: 60px;
+                margin-left: 10px;
+                width: 80px;
+                height: 60px;
+                border: 3px dotted #fda73c;
+                border-radius: 10px;
+                float: left;
+                line-height: 60px;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 900;
+                font-family: Microsoft Yahei;
+                color: #fda73c;
+                position: relative;
+            }
             .RightArea .Phonemark {
                 width: 80px;
                 margin: 10px;
@@ -344,7 +365,6 @@
                 width: 22px;
                 height: 22px;
                 position: absolute;
-                transition: all 0.1s ease 0s;
                 border-radius: 6px;
                 border: 3px solid black;
             }
@@ -374,6 +394,7 @@
             .PCRightArea {
                 display: none;
             }
+            
 
             .keyarea {
                 display: flex;
@@ -448,7 +469,7 @@
             #MiddleArea {
                 z-index: 400;
                 width: 200px;
-                height: 200px;
+                height: 140px;
                 position: fixed;
                 background: #faab4a;
                 border-radius: 20px;
@@ -457,7 +478,7 @@
 
             #MiddleArea .Popup {
                 width: 180px;
-                height: 180px;
+                height: 120px;
                 margin: 10px;
                 background: #d07300;
                 border-radius: 20px;
@@ -501,7 +522,77 @@
                 font-weight: 900;
                 background: greenyellow;
             }
-
+            #SettingArea{
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 450;
+                display: none;
+            }
+            #SettingContainer{
+                z-index: 451;
+                width: 200px;
+                height: 130px;
+                position: fixed;
+                background: #faab4a;
+                border: 10px solid saddlebrown;
+            }
+            #SettingContainer .SettingPopup{
+                height: 40px;
+                width: 100%;
+                background: #ef9321;
+            }
+            #SettingContainer .SettingPopup .Settingtitle {
+                height: 40px;
+                width: 80%;
+                float: left;
+                line-height: 40px;
+                text-align: center;
+                font-size: 25px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+            }
+            .Setting{
+                float: left;
+                text-align: left;
+                height: 40px;
+                width: 140px;
+                line-height: 40px;
+                font-size: 20px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+                margin-left: 10px;
+            }
+            .Settingselect{
+                text-align: left;
+                float: left;
+                height: 20px;
+                width: 20px;
+                line-height: 20px;
+                border: 3px solid white;
+                font-size: 20px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+                margin-right: 20px;
+                margin-top: 7px;
+            }
+            #SettingContainer .SettingPopup #SettingClose {
+                float: left;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                width: 20%;
+                font-size: 20px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+            }
             #RankingArea {
                 position: fixed;
                 left: 0;
@@ -672,14 +763,23 @@
         <p>下一步</p>
         <div class="NextModelArea" id="NextModelArea"></div>
     </div>
-    <div class="musicplaying">
-        <audio src="./assert/all.mp3" id="audios"></audio>
-    </div>
+    <div id="RightBottom" onclick="SettingDisplay('inline')">设置</div>
     <div id="MiddleArea">
         <div class="Popup">
             <div class="result" id="result">挑战失败，请继续努力</div>
-            <div class="ranking" onclick="RankingDisplay('inline')">排行榜</div>
             <div class="start" onclick="flush()">重新开始</div>
+        </div>
+    </div>
+    <div id="SettingArea">
+        <div id="SettingContainer">
+            <div class="SettingPopup">
+                <div class="Settingtitle">设置</div>
+                <div id="SettingClose" onclick="SettingDisplay('none')">X</div>
+            </div>
+            <div class="Setting" >音效</div>
+            <div class="Settingselect" id="SettingMusic" onclick="SettingMusic()"></div>
+            <div class="Setting" >旋转动画</div>
+            <div class="Settingselect" id="SettingRotate" onclick="Settingrotate()"></div>
         </div>
     </div>
     <div id="RankingArea">
@@ -705,10 +805,10 @@
         </div>
     </div>
     <div class="keyarea">
-        <div class="key" onclick="move(-1,0);playmusic();">◁</div>
+        <div class="key" onclick="move(-1,0);playmusic('move');">◁</div>
         <div class="key" onclick="autoDown(35);">▽</div>
-        <div class="key" onclick="move(1,0);playmusic();">▷</div>
-        <div class="key" onclick="rotate();playmusic();" style="font-size: 15px;">🔘旋转</div>
+        <div class="key" onclick="move(1,0);playmusic('move');">▷</div>
+        <div class="key" onclick="rotate();" style="font-size: 15px;">🔘旋转</div>
     </div>
     <div class="PhoneButton">
         <div id="BottomLevel" class="BottomLevel">🌟 0</div>
@@ -759,6 +859,10 @@
         var Number = 0;
         //游戏状态
         var Game = true;
+        //音效开关
+        var MusicPlay = false;
+        // 旋转动画开关
+        var RotatePlay = false;
         //模型数据
         var MoDELS = [
             {
@@ -921,7 +1025,8 @@
                 document.getElementById("MiddleArea").style.left = (screen.width - 200) / 2 + "px";
                 document.getElementById("Ranking").style.top = (screen.height - 640) / 2 + "px";
                 document.getElementById("Ranking").style.left = (screen.width - 320) / 2 + "px";
-
+                document.getElementById("SettingContainer").style.top = (screen.height - 300) / 2 + "px";
+                document.getElementById("SettingContainer").style.left = (screen.width - 200) / 2 + "px";
             }
         }
         //关卡动画
@@ -932,9 +1037,19 @@
             setTimeout("document.getElementsByClassName('level')[0].style.visibility = 'hidden',document.getElementsByClassName('level')[0].style.opacity = '0'", 1000);
         }
         //播放滑动音乐
-        function playmusic() {
-            var audio = new Audio("./assert/move.mp3");
-            audio.play();
+        function playmusic(music) {
+            if(MusicPlay == true){
+                if(music == 'move'){
+                    var audio = new Audio("./assert/move.mp3");
+                    audio.play();
+                }else if(music == 'clear'){
+                    var audio = new Audio("./assert/clear.mp3");
+                    audio.play();
+                }else{
+                    var audio = new Audio("./assert/all.mp3");
+                    audio.play();
+                }
+            }
         }
         //加分动画
         function BounsPoint(Point) {
@@ -966,6 +1081,9 @@
                 var NowModel = document.createElement("div");
                 NowModel.className = "activity_model";
                 NowModel.style.background = hue;
+                if(RotatePlay == true){
+                    NowModel.style.transition =  'all 0.1s ease 0s';
+                }
                 if(screen.width <450) {
                     NowModel.style.width = STEP-3 +"px";
                     NowModel.style.height = STEP-3 +"px";
@@ -1108,7 +1226,7 @@
                     //按右键向右移动模块
                     case 39:
                         move(1, 0);
-                        playmusic();
+                        playmusic('move');
                         break;
                     //按下键模块加速下滑
                     case 40:
@@ -1117,13 +1235,17 @@
                     //按左键向左移动模块
                     case 37:
                         move(-1, 0);
-                        playmusic();
+                        playmusic('move');
                         break;
                 }
             }
         }
         //旋转
         function rotate() {
+            //判断是否为正方形
+            if(currentModel == MoDELS[2]){
+                return;
+            }
             //克隆模型原先模型
             var cloneCurrentModel = _.cloneDeep(currentModel)
             //旋转算法改变模型
@@ -1226,8 +1348,7 @@
                 BounsPoint(BounsPoints);
                 BounsPoints = 0;
             } else {
-                var audio = new Audio("./assert/clear.mp3");
-                audio.play();
+                playmusic('clear');
             }
         }
         //删除行
@@ -1241,10 +1362,7 @@
                 fixedBlocks[line + "_" + i] = null;
             }
             downLine(line);
-            //var audio= new Audio("./yx.mp3");//这里的路径写上mp3文件在项目中的绝对路径
-            //audio.play();
-            var media = document.querySelector('#audios');
-            media.play();
+            playmusic('all');
         }
         function downLine(line) {
             //1.被清理行之上的所有块元素数据源所在的行书+1
@@ -1350,7 +1468,7 @@
                             document.getElementById("AllRanking").append(singleRanking);
                         }else if(j == 1){
                             var singleRanking = document.createElement("li");
-                            singleRanking.innerHTML = '<div>💿</div>' + NewRanking[j];
+                            singleRanking.innerHTML = '<div>s</div>' + NewRanking[j];
                             document.getElementById("AllRanking").append(singleRanking);
                         }else if(j == 2){
                             var singleRanking = document.createElement("li");
@@ -1482,6 +1600,51 @@
             }
             document.getElementById("RankingArea").style.display = activity;
         }
+        //设置显示隐藏
+        function SettingDisplay(activity) {
+            if (activity == 'none') {
+                if (Game == true) {
+                    autoDown(Speed);
+                } else {
+                    clearInterval(mInterval);
+                }
+            } else {
+                clearInterval(mInterval);
+            }
+            document.getElementById("SettingArea").style.display = activity;
+        }
+        //设置音效
+        function SettingMusic(){
+            if(MusicPlay == false){
+                MusicPlay= true;
+                document.getElementById("SettingMusic").innerText = '✔';
+            }else if(MusicPlay == true) {
+                MusicPlay= false;
+                console.log(MusicPlay);
+                document.getElementById("SettingMusic").innerHTML = '';
+            }
+        }
+        //设置旋转
+        function Settingrotate() {
+            //获取模块
+            var Allblcok = document.getElementsByClassName("activity_model");
+            //确定模块的位置
+            if(RotatePlay == false){
+                RotatePlay= true;
+                document.getElementById("SettingRotate").innerText = '✔';
+                for (var i = 0; i < Allblcok.length; i++) {
+                    var singelblock = Allblcok[i];
+                    singelblock.style.transition='all 0.1s ease 0s';
+                }
+            }else if(RotatePlay == true) {
+                RotatePlay= false;
+                document.getElementById("SettingRotate").innerHTML = '';
+                for (var i = 0; i < Allblcok.length; i++) {
+                    var singelblock = Allblcok[i];
+                    singelblock.style.transition='none';
+                }
+            }
+        }
         //手指触碰
         function onTouch() {
             document.getElementById("TouchArea").addEventListener("touchstart", function (e) {
@@ -1515,8 +1678,8 @@
                         targetX = COL_COUNT;
                     }
 
-                    if (targetX < -1) {
-                        targetX = -1;
+                    if (targetX < -2) {
+                        targetX = -2;
                     }
                     if (targetX != currentX) {
                         if (targetX > currentX) {
@@ -1524,14 +1687,15 @@
                             for (var i = 0; i < nowx; i++) {
                                 move(1, 0);
                             }
-                            playmusic();
+                            playmusic('move');
+                            
                         }
                         else {
                             nowx = currentX - targetX;
                             for (var i = 0; i < nowx; i++) {
                                 move(-1, 0);
                             }
-                            playmusic();
+                            playmusic('move');
                         }
                     }
 
