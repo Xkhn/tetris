@@ -284,26 +284,9 @@
                 margin-left: 5px;
                 float: left;
                 width: 100px;
-                height: 250px;
+                height: 320px;
                 background: #ef9321;
                 border-radius: 10px;
-            }
-            
-            #RightBottom{
-                margin-top: 60px;
-                margin-left: 10px;
-                width: 80px;
-                height: 60px;
-                border: 3px dotted #fda73c;
-                border-radius: 10px;
-                float: left;
-                line-height: 60px;
-                text-align: center;
-                font-size: 20px;
-                font-weight: 900;
-                font-family: Microsoft Yahei;
-                color: #fda73c;
-                position: relative;
             }
             .RightArea .Phonemark {
                 width: 80px;
@@ -456,7 +439,7 @@
             .PhoneButton .an {
                 width: 95px;
                 height: 40px;
-                margin: 0 5px 5px 5px;
+                margin: 0 5px 5px 20px;
                 float: left;
                 line-height: 40px;
                 text-align: center;
@@ -464,8 +447,18 @@
                 color: wheat;
                 font-family: Microsoft Yahei;
                 font-size: 17px;
+                position: relative;
             }
-
+            .PhoneButton .an img{
+                width: 20px;
+                height: 20px;
+                border-radius: 10px;
+                padding-right: 5px;
+                padding-top: 5px;
+                position: absolute;
+                top: 6px;
+                left: -7px;
+            }
             #MiddleArea {
                 z-index: 400;
                 width: 200px;
@@ -662,8 +655,7 @@
             }
 
             #Ranking .RangkingPoint ul li:nth-child(1) {
-                color: #ffffff;
-                background: #ec7171;
+                color: rgb(255, 185, 0);
             }
             #Ranking .RangkingPoint ul li:nth-child(1) div{
                 line-height: 35px;
@@ -674,8 +666,7 @@
             }
 
             #Ranking .RangkingPoint ul li:nth-child(2) {
-                color: #ffffff;
-                background: #91ea7f;
+                color: #acacac;
             }
             #Ranking .RangkingPoint ul li:nth-child(2) div{
                 line-height: 35px;
@@ -686,8 +677,7 @@
             }
 
             #Ranking .RangkingPoint ul li:nth-child(3) {
-                color: #ffffff;
-                background: #8f7bff;
+                color: #f7894a;
             }
             #Ranking .RangkingPoint ul li:nth-child(3) div{
                 line-height: 35px;
@@ -701,7 +691,7 @@
                 line-height: 35px;
                 height: 35px;
                 font-size: 20px;
-                color: #ff8080;
+                color: #ffffff;
                 font-family: Microsoft Yahei;
                 font-weight: 900;
                 text-align: right;
@@ -709,7 +699,7 @@
                 margin-right: 30px;
                 padding-right: 20px;
                 padding-left: 15px;
-                background: #ffeeda;
+                background: #fdd7a6;
             }
 
             #Ranking .RangkingPoint li:nth-of-type(even) {
@@ -756,6 +746,8 @@
         </div>
     </div>
     <div class="RightArea">
+        <p>关卡</p>
+        <div class="Phonemark" id="TopLevel">1</div>
         <p>分数</p>
         <div class="Phonemark" id="Phonemark">0</div>
         <p>最高分</p>
@@ -763,7 +755,6 @@
         <p>下一步</p>
         <div class="NextModelArea" id="NextModelArea"></div>
     </div>
-    <div id="RightBottom" onclick="SettingDisplay('inline')">设置</div>
     <div id="MiddleArea">
         <div class="Popup">
             <div class="result" id="result">挑战失败，请继续努力</div>
@@ -773,8 +764,8 @@
     <div id="SettingArea">
         <div id="SettingContainer">
             <div class="SettingPopup">
-                <div class="Settingtitle">设置</div>
-                <div id="SettingClose" onclick="SettingDisplay('none')">X</div>
+                    <div class="Settingtitle">排行榜</div>
+                    <div id="SettingClose" onclick="SettingDisplay('none')">X</div>
             </div>
             <div class="Setting" >音效</div>
             <div class="Settingselect" id="SettingMusic" onclick="SettingMusic()"></div>
@@ -811,9 +802,9 @@
         <div class="key" onclick="rotate();" style="font-size: 15px;">🔘旋转</div>
     </div>
     <div class="PhoneButton">
-        <div id="BottomLevel" class="BottomLevel">🌟 0</div>
+        <div class="BottomLevel" onclick="SettingDisplay('inline')">🔱设置</div>
         <div class="BottomLevel" onclick="RankingDisplay('inline')">👑排行榜</div>
-        <div onclick="flush()" class="an">🔄重新开始</div>
+        <div onclick="flush()" class="an"><img src="./img/newrestart.jpg">重新开始</div>
     </div>
 
     <script>
@@ -824,7 +815,6 @@
         var ROW_COUNT = 16,
             COL_COUNT = 9;
         //PC下一个模型容器
-        var rowcount = 6;
         colcount = 5;
         //当前使用的模型
         var currentModel = {}
@@ -964,6 +954,7 @@
         function init() {
             ScreenWidth();
             BestScore();
+            StartSetting();
             NextModel();
             Create();
             onKeyDown();
@@ -975,17 +966,18 @@
             newModel = MoDELS[_.random(0, MoDELS.length - 1)];
             //随机下一个模型的颜色
             color = getColor();
+            var Color = color
             //生成模型对应的DIV
             for (var key in newModel) {
                 //添加模型到PC下一个模块的容器中
                 var block = document.createElement("div");
                 block.className = "new_model";
-                block.style.background = color;
+                block.style.background = Color;
                 document.getElementById("next_block").appendChild(block);
                 //添加模型到移动端下一个模块的容器中
                 var phoneblock = document.createElement("div");
                 phoneblock.className = "model_new";
-                phoneblock.style.background = color;
+                phoneblock.style.background = Color;
                 document.getElementById("NextModelArea").appendChild(phoneblock);
             }
             //定义PC端和移动端模块再容器中的位置
@@ -997,8 +989,9 @@
                 var singelPCblcok = allPCblock[i];
                 var singelPhoneblock = allPhoneBlock[i];
                 var blockModel = newModel[i];
-                singelPCblcok.style.top = blockModel.row * STEP + "px";
-                singelPCblcok.style.left = blockModel.col * STEP + "px";
+                var step = STEP;
+                singelPCblcok.style.top = blockModel.row * step + "px";
+                singelPCblcok.style.left = blockModel.col * step + "px";
                 singelPhoneblock.style.top = blockModel.row * 15 + "px";
                 singelPhoneblock.style.left = blockModel.col * 15 + "px";
             }
@@ -1015,12 +1008,13 @@
                 document.getElementById("Ranking").style.left = rect.left + 30 + "px";
             } else if (screen.width < 450) {
                 STEP = parseInt((screen.width - 135) / 9);
-                document.getElementsByClassName("screen")[0].style.height = (STEP * 16) + 30 + "px";
-                document.getElementsByClassName("screen")[0].style.width = STEP * 9 + 25 + "px";
-                document.getElementById("TouchArea").style.height = STEP * 16 + "px";
-                document.getElementById("TouchArea").style.width = STEP * 9 + "px";
-                document.getElementById("container").style.height = STEP * 16 + 3 + "px";
-                document.getElementById("container").style.width = STEP * 10 + "px";
+                var step = STEP
+                document.getElementsByClassName("screen")[0].style.height = (step * 16) + 30 + "px";
+                document.getElementsByClassName("screen")[0].style.width = step * 9 + 25 + "px";
+                document.getElementById("TouchArea").style.height = step * 16 + "px";
+                document.getElementById("TouchArea").style.width = step * 9 + "px";
+                document.getElementById("container").style.height = step * 16 + 3 + "px";
+                document.getElementById("container").style.width = step * 10 + "px";
                 document.getElementById("MiddleArea").style.top = (screen.height - 300) / 2 + "px";
                 document.getElementById("MiddleArea").style.left = (screen.width - 200) / 2 + "px";
                 document.getElementById("Ranking").style.top = (screen.height - 640) / 2 + "px";
@@ -1096,8 +1090,8 @@
             if (mark < 500) {
                 Speed = 1000;
                 Level = '第一关';
-                document.getElementById("BottomLevel").innerHTML = "";
-                document.getElementById("BottomLevel").innerHTML = "🌟" + Level;
+                document.getElementById("TopLevel").innerHTML = "";
+                document.getElementById("TopLevel").innerHTML = "1";
                 if (LevelNumber < 2) {
                     LevelAnimation(Level);
                     LevelNumber += 1
@@ -1105,8 +1099,8 @@
             } else if (mark >= 500 && mark < 1000) {
                 Level = '第二关'
                 Speed = 800;
-                document.getElementById("BottomLevel").innerHTML = "";
-                document.getElementById("BottomLevel").innerHTML = "🌟" + Level;
+                document.getElementById("TopLevel").innerHTML = "";
+                document.getElementById("TopLevel").innerHTML = "2";
                 if (LevelNumber >= 2 && LevelNumber < 3) {
                     LevelAnimation(Level);
                     LevelNumber += 1
@@ -1114,8 +1108,8 @@
             } else if (mark >= 1000 && mark < 1500) {
                 Level = '第三关'
                 Speed = 700;
-                document.getElementById("BottomLevel").innerHTML = "";
-                document.getElementById("BottomLevel").innerHTML = "🌟" + Level;
+                document.getElementById("TopLevel").innerHTML = "";
+                document.getElementById("TopLevel").innerHTML = "3";
                 if (LevelNumber >= 3 && LevelNumber < 4) {
                     LevelAnimation(Level);
                     LevelNumber += 1
@@ -1123,8 +1117,8 @@
             } else if (mark >= 1500 && mark < 2500) {
                 Level = '第四关'
                 Speed = 500;
-                document.getElementById("BottomLevel").innerHTML = "";
-                document.getElementById("BottomLevel").innerHTML = "🌟" + Level;
+                document.getElementById("TopLevel").innerHTML = "";
+                document.getElementById("TopLevel").innerHTML = "4";
                 if (LevelNumber >= 4 && LevelNumber < 5) {
                     LevelAnimation(Level);
                     LevelNumber += 1
@@ -1132,8 +1126,8 @@
             } else if (mark >= 2500 && mark < 3500) {
                 Level = '第五关'
                 Speed = 300;
-                document.getElementById("BottomLevel").innerHTML = "";
-                document.getElementById("BottomLevel").innerHTML = "🌟" + Level;
+                document.getElementById("TopLevel").innerHTML = "";
+                document.getElementById("TopLevel").innerHTML = "5";
                 if (LevelNumber >= 5 && LevelNumber < 6) {
                     LevelAnimation(Level);
                     LevelNumber += 1
@@ -1141,8 +1135,8 @@
             } else if (mark >= 3500 && mark < 5000) {
                 Level = '第六关'
                 Speed = 200;
-                document.getElementById("BottomLevel").innerHTML = "";
-                document.getElementById("BottomLevel").innerHTML = "🌟" + Level;
+                document.getElementById("TopLevel").innerHTML = "";
+                document.getElementById("TopLevel").innerHTML = "6";
                 if (LevelNumber >= 6 && LevelNumber < 7) {
                     LevelAnimation(Level);
                     LevelNumber += 1
@@ -1150,8 +1144,8 @@
             } else {
                 Level = '无敌关'
                 Speed = 10;
-                document.getElementById("BottomLevel").innerHTML = "";
-                document.getElementById("BottomLevel").innerHTML = "🌟" + Level;
+                document.getElementById("TopLevel").innerHTML = "";
+                document.getElementById("TopLevel").innerHTML = "7" ;
                 if (LevelNumber >= 7 && LevelNumber < 8) {
                     LevelAnimation(Level);
                     LevelNumber += 1
@@ -1174,12 +1168,14 @@
             for (var i = 0; i < Allblcok.length; i++) {
                 var singelblock = Allblcok[i];
                 var blockModel = currentModel[i];
-                singelblock.style.top = (currentY + blockModel.row) * STEP + "px";
-                singelblock.style.left = (currentX + blockModel.col) * STEP + "px";
+                var step = STEP;
+                singelblock.style.top = (currentY + blockModel.row) * step + "px";
+                singelblock.style.left = (currentX + blockModel.col) * step + "px";
             }
         }
         //移动小方块
         function move(x, y) {
+            var oldX = currentX;
             //右移动的时候触发
             if (x > 1) {
                 for (var i = 1; i < x; i++) {
@@ -1214,6 +1210,10 @@
             currentY += y;
             //确定模型位置
             locationmodel();
+            if(oldX!=currentX )
+            {
+                playmusic("move");
+            }
         }
         //按钮确认
         function onKeyDown() {
@@ -1226,7 +1226,6 @@
                     //按右键向右移动模块
                     case 39:
                         move(1, 0);
-                        playmusic('move');
                         break;
                     //按下键模块加速下滑
                     case 40:
@@ -1235,7 +1234,6 @@
                     //按左键向左移动模块
                     case 37:
                         move(-1, 0);
-                        playmusic('move');
                         break;
                 }
             }
@@ -1292,8 +1290,6 @@
             for (var i = fix.length - 1; i >= 0; i--) {
                 var fixblock = fix[i]
                 fixblock.className = "fixed_model"
-                //gdmk.style.width = STEP - 3 + "px";
-                //gdmk.style.height = STEP - 3 + "px";
                 var block = currentModel[i]
                 //记录固定模型的位置
                 fixedBlocks[(currentY + block.row) + "_" + (currentX + block.col)] = fixblock;
@@ -1316,9 +1312,11 @@
         }
         //清除下一个模型
         function removenew() {
+            var Nextblock = document.getElementById("next_block")
+            var Nextmodelarea = document.getElementById("NextModelArea")
             for (var i = 0; i < colcount; i++) {
-                document.getElementById("next_block").innerHTML = "";
-                document.getElementById("NextModelArea").innerHTML = "";
+                Nextblock.innerHTML = "";
+                Nextmodelarea.innerHTML = "";
             }
         }
         //检测行是否铺满
@@ -1326,13 +1324,14 @@
             //在一行中，每一列都存在块元素，那么该行就需要被消除
             //遍历所有行中的所有列
             //遍历所有行
+            var FIXEDBLOCKS = fixedBlocks
             for (var i = 0; i < ROW_COUNT; i++) {
                 //编辑夫，假设当前行已经被铺满
                 var flag = true
                 //遍历当前行中的所有列
                 for (var j = 0; j < COL_COUNT; j++) {
                     //如果当前行中右一列没有数据，那么就说明当前行没有被铺满
-                    if (!fixedBlocks[i + "_" + j]) {
+                    if (!FIXEDBLOCKS[i + "_" + j]) {
                         flag = false;
                         break;
                     }
@@ -1376,8 +1375,9 @@
                     //存在数据
                     //1.被清理行之上的所有块元素数据源所在的行数 +1
                     fixedBlocks[(i + 1) + "_" + j] = fixedBlocks[i + "_" + j];
+                    var step =STEP;
                     //2.让块元素在容器中的位置下落一行
-                    fixedBlocks[(i + 1) + "_" + j].style.top = (i + 1) * STEP + "px";
+                    fixedBlocks[(i + 1) + "_" + j].style.top = (i + 1) * step + "px";
                     //3.清理掉之前的块元素
                     fixedBlocks[i + "_" + j] = null;
                 }
@@ -1454,8 +1454,9 @@
                     Ranking.pop();
                     Ranking.push(mark);
                     var NewRanking = sort(Ranking).reverse();
-                    var twoRanking = binaryInsertSort(Ranking).reverse();
-                    console.log(NewRanking);
+                    //var twoRanking = binaryInsertSort(Ranking).reverse();
+                    //console.log(NewRanking);
+                    var allranking =document.getElementById("AllRanking");
                     localStorage.setItem("Ranking", NewRanking);
                     //情况排行榜
                     document.getElementById("AllRanking").innerHTML = "";
@@ -1464,20 +1465,20 @@
                         var nowj = j + 1;
                         if(j == 0){
                             var singleRanking = document.createElement("li");
-                            singleRanking.innerHTML = '<div>👑</div>' + NewRanking[j];
-                            document.getElementById("AllRanking").append(singleRanking);
+                            singleRanking.innerHTML = '<div>🥇</div>' + NewRanking[j];
+                            allranking.append(singleRanking);
                         }else if(j == 1){
                             var singleRanking = document.createElement("li");
-                            singleRanking.innerHTML = '<div>s</div>' + NewRanking[j];
-                            document.getElementById("AllRanking").append(singleRanking);
+                            singleRanking.innerHTML = '<div>🥈</div>' + NewRanking[j];
+                            allranking.append(singleRanking);
                         }else if(j == 2){
                             var singleRanking = document.createElement("li");
-                            singleRanking.innerHTML = '<div>📀</div>' + NewRanking[j];
-                            document.getElementById("AllRanking").append(singleRanking);
+                            singleRanking.innerHTML = '<div>🥉</div>' + NewRanking[j];
+                            allranking.append(singleRanking);
                         }else {
                             var singleRanking = document.createElement("li");
                             singleRanking.innerHTML = '<div>'+nowj+'</div>' + NewRanking[j];
-                            document.getElementById("AllRanking").append(singleRanking);
+                            allranking.append(singleRanking);
                         }
                     }
                     //如果获得第一名
@@ -1556,7 +1557,8 @@
         }
         //读取最高分
         function BestScore() {
-            document.getElementById("AllRanking").innerHTML = "";
+            var allRanking =document.getElementById("AllRanking");
+            allRanking.innerHTML = "";
             NewScore = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             maxScore = localStorage.getItem("Ranking");
             maxScore = maxScore == null ? NewScore : maxScore.split(',');
@@ -1566,21 +1568,37 @@
                 var nowj = j + 1;
                 if(j == 0){
                     var singleRanking = document.createElement("li");
-                    singleRanking.innerHTML = '<div>👑</div>' + maxScore[j];
-                    document.getElementById("AllRanking").append(singleRanking);
+                    singleRanking.innerHTML = '<div>🥇</div>' + maxScore[j];
+                    allRanking.append(singleRanking);
                 }else if(j == 1){
                     var singleRanking = document.createElement("li");
-                    singleRanking.innerHTML = '<div>💿</div>' + maxScore[j];
-                    document.getElementById("AllRanking").append(singleRanking);
+                    singleRanking.innerHTML = '<div>🥈</div>' + maxScore[j];
+                    allRanking.append(singleRanking);
                 }else if(j == 2){
                     var singleRanking = document.createElement("li");
-                    singleRanking.innerHTML = '<div>📀</div>' + maxScore[j];
-                    document.getElementById("AllRanking").append(singleRanking);
+                    singleRanking.innerHTML = '<div>🥉</div>' + maxScore[j];
+                    allRanking.append(singleRanking);
                 }else {
                     var singleRanking = document.createElement("li");
                     singleRanking.innerHTML = '<div>'+nowj+'</div>' + maxScore[j];
-                    document.getElementById("AllRanking").append(singleRanking);
+                    allRanking.append(singleRanking);
                 }
+            }
+        }
+        //读取设置
+        function StartSetting(){
+            MusicPlay = localStorage.getItem("MusicPlay") === "false" ? true :false;
+            if(MusicPlay == null){
+                MusicPlay =false;
+            }else{
+                SettingMusic();
+                
+            }
+            RotatePlay = localStorage.getItem("RotatePlay") === "false" ? true :false;
+            if(RotatePlay == null){
+                RotatePlay =false;
+            }else{
+                Settingrotate();
             }
         }
         //刷新页面
@@ -1617,10 +1635,11 @@
         function SettingMusic(){
             if(MusicPlay == false){
                 MusicPlay= true;
+                localStorage.setItem("MusicPlay", MusicPlay);
                 document.getElementById("SettingMusic").innerText = '✔';
             }else if(MusicPlay == true) {
                 MusicPlay= false;
-                console.log(MusicPlay);
+                localStorage.setItem("MusicPlay", MusicPlay);
                 document.getElementById("SettingMusic").innerHTML = '';
             }
         }
@@ -1632,6 +1651,7 @@
             if(RotatePlay == false){
                 RotatePlay= true;
                 document.getElementById("SettingRotate").innerText = '✔';
+                localStorage.setItem("RotatePlay", RotatePlay);
                 for (var i = 0; i < Allblcok.length; i++) {
                     var singelblock = Allblcok[i];
                     singelblock.style.transition='all 0.1s ease 0s';
@@ -1639,6 +1659,7 @@
             }else if(RotatePlay == true) {
                 RotatePlay= false;
                 document.getElementById("SettingRotate").innerHTML = '';
+                localStorage.setItem("RotatePlay", RotatePlay);
                 for (var i = 0; i < Allblcok.length; i++) {
                     var singelblock = Allblcok[i];
                     singelblock.style.transition='none';
@@ -1675,11 +1696,11 @@
                     var n = parseInt(d / STEP);
                     var targetX = oldX + n;
                     if (targetX > COL_COUNT) {
-                        targetX = COL_COUNT;
+                        //targetX = COL_COUNT;
                     }
 
                     if (targetX < -2) {
-                        targetX = -2;
+                        //targetX = -2;
                     }
                     if (targetX != currentX) {
                         if (targetX > currentX) {
@@ -1687,15 +1708,12 @@
                             for (var i = 0; i < nowx; i++) {
                                 move(1, 0);
                             }
-                            playmusic('move');
-                            
                         }
                         else {
                             nowx = currentX - targetX;
                             for (var i = 0; i < nowx; i++) {
                                 move(-1, 0);
                             }
-                            playmusic('move');
                         }
                     }
 
