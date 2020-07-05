@@ -1,0 +1,718 @@
+
+        @media screen and (min-width:1200px) {
+            ul li {
+                margin: 0;
+                padding: 0;
+            }
+            .screen {
+                display: flex;
+                justify-content: center;
+            }
+
+            .container {
+                width: 400px;
+                height: 720px;
+                background-image: -webkit-linear-gradient(bottom left, rgba(0, 0, 255, 0.5), rgba(255, 0, 0, 0.75)), -webkit-linear-gradient(rgba(0, 0, 255, 0.25) 100%, transparent), url(../assert/img/background.jpg);
+                background-image: linear-gradient(to top right, rgba(0, 0, 255, 0.5), rgba(255, 0, 0, 0.75)), linear-gradient(rgba(0, 0, 255, 0.25) 100%, transparent), url(../assert/img/background.jpg);
+                background-size: cover;
+                background-position: center;
+                position: relative;
+                overflow: hidden;
+                float: left;
+            }
+
+            .next_block {
+                width: 240px;
+                height: 200px;
+                background-color: bisque;
+                position: relative;
+                margin-left: 5px;
+            }
+
+            .activity_model {
+                width: 40px;
+                height: 40px;
+                background-size: 120%;
+                border-radius: 13px;
+                box-sizing: border-box;
+                position: absolute;
+                transition: all 0.1s ease 0s;
+                border-radius: 5px;
+                border: 3px solid black;
+            }
+
+            .new_model {
+                width: 40px;
+                height: 40px;
+                background-size: 120%;
+                border-radius: 13px;
+                box-sizing: border-box;
+                position: absolute;
+                border-radius: 5px;
+                border: 3px solid black;
+            }
+
+            .fixed_model {
+                width: 40px;
+                height: 40px;
+                background-size: 120%;
+                box-sizing: border-box;
+                position: absolute;
+                transition: all 0.3s ease 0s;
+                border-radius: 5px;
+                border: 3px solid black;
+            }
+
+            .mark {
+                border: 1px solid rgba(0, 0, 255, 0.25);
+                margin-top: 50px;
+                margin-left: 20px;
+                margin-bottom: -40px;
+                text-align: center;
+                height: 50px;
+                font-size: 30px;
+                line-height: 50px;
+                color: white;
+                background: blueviolet;
+                border-radius: 10px;
+            }
+
+            .keyarea {
+                display: none;
+            }
+
+            .PhoneButton {
+                display: none;
+            }
+
+            .level {
+                display: none;
+            }
+
+            .musicplaying {
+                visibility: hidden;
+            }
+
+            .RightArea {
+                display: none;
+            }
+
+            .BounsPoint {
+                display: none;
+            }
+
+            #MiddleArea {
+                display: none;
+            }
+            .Settingtitle {
+                display: none;
+            }
+            #RankingArea {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                display: none;
+                z-index: 500;
+            }
+
+            #Ranking {
+                z-index: 501;
+                width: 300px;
+                height: 500px;
+                position: fixed;
+                background: #faab4a;
+                border: 10px solid saddlebrown;
+            }
+
+            #Ranking .RankingTop {
+                height: 60px;
+                width: 100%;
+                background: #ef9321;
+            }
+
+            #Ranking .RankingTop .Rankingtitle {
+                height: 60px;
+                width: 80%;
+                float: left;
+                line-height: 60px;
+                text-align: center;
+                font-size: 30px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+
+            }
+
+            #Ranking .RankingTop #RankingClose {
+                float: left;
+                height: 60px;
+                line-height: 60px;
+                text-align: center;
+                width: 20%;
+                font-size: 30px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+            }
+
+            #Ranking .RangkingPoint {
+                height: 400px;
+                width: 260px;
+                margin: 15px 20px 15px 20px;
+                background: #ffdeb4;
+                border-radius: 20px;
+                padding-top: 20px;
+            }
+
+            #Ranking .RangkingPoint ul {
+                list-style: none;
+                width: 90%;
+                height: 80%;
+                background: #ffdeb4;
+                margin-left: 10%;
+                padding: 0;
+            }
+
+            #Ranking .RangkingPoint ul li:nth-of-type(odd) {
+                height: 35px;
+                font-size: 20px;
+                color: #ff8080;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+                text-align: right;
+                display: block;
+                margin-right: 30px;
+                padding-right: 10px;
+                padding-left: 5px;
+                background: #ffeeda;
+            }
+
+            #Ranking .RangkingPoint ul li:nth-of-type(even) {
+                height: 35px;
+                font-size: 20px;
+                color: white;
+                background: #fda86c;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+                text-align: right;
+                display: block;
+                margin-right: 30px;
+                padding-right: 10px;
+                padding-left: 5px;
+            }
+
+            #Ranking .RangkingPoint ul li div {
+                text-align: left;
+                float: left;
+                width: 70%;
+            }
+            #SettingArea{
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+
+            body,
+            html,
+            ul,
+            li {
+                background: linear-gradient(to top right, rgba(253, 253, 255, 0.5), rgba(243, 225, 175, 0.75));
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .level {
+                z-index: 300;
+                width: 140px;
+                height: 50px;
+                border: 5px dotted #fda73c;
+                position: fixed;
+                visibility: visible;
+                opacity: 1;
+                transition: all linear 2s;
+                line-height: 50px;
+                color: #fda73c;
+                text-align: center;
+                font-size: 30px;
+                font-weight: 900;
+                font-family: Microsoft Yahei;
+            }
+
+            .Point {
+                z-index: 200;
+                width: 140px;
+                height: 50px;
+                top: 330px;
+                left: 80px;
+                position: fixed;
+                visibility: visible;
+                opacity: 1;
+                transition: all linear 1s;
+                line-height: 50px;
+                color: rgb(255, 217, 0);
+                text-align: center;
+                font-size: 35px;
+                font-family: cursive;
+                font-weight: 900;
+            }
+
+            .screen {
+                display: flex;
+                margin-top: 30px;
+                margin-left: 5px;
+                width: 245px;
+                float: left;
+            }
+
+            .RightArea {
+                margin-top: 60px;
+                margin-left: 5px;
+                float: left;
+                width: 100px;
+                height: 320px;
+                background: #ef9321;
+                border-radius: 10px;
+            }
+            .RightArea .Phonemark {
+                width: 80px;
+                margin: 10px;
+                height: 30px;
+                background: #d07300;
+                border-radius: 10px;
+                text-align: center;
+                font-size: 14px;
+                font-weight: 900;
+                color: white;
+                line-height: 30px;
+                font-family: Microsoft Yahei;
+            }
+
+            .RightArea .NextModelArea {
+                width: 85px;
+                margin: 10px;
+                height: 60px;
+                background: #d07300;
+                border-radius: 10px;
+                position: relative;
+                font-family: Microsoft Yahei;
+            }
+
+            .RightArea p {
+                color: rgb(255, 255, 255);
+                text-align: center;
+                height: 15px;
+                line-height: 15px;
+                font-size: 10px;
+                font-weight: 900;
+            }
+
+            .container {
+                width: 245px;
+                height: 400px;
+                background: url(../assert/img/bg.jpg);
+                background-size: cover;
+                background-position: center;
+                position: relative;
+                overflow: hidden;
+                float: left;
+                border: 10px solid #fda86c;
+            }
+
+            #TouchArea {
+                width: 225px;
+                height: 400px;
+                position: fixed;
+                z-index: 100;
+            }
+
+            .next_block {
+                display: none;
+            }
+
+            .activity_model {
+                width: 22px;
+                height: 22px;
+                position: absolute;
+                border-radius: 6px;
+                border: 3px solid black;
+            }
+
+            .model_new {
+                width: 14px;
+                height: 15px;
+                position: absolute;
+                border-radius: 3px;
+                border: 1px solid black;
+            }
+
+            .new_model {
+                display: none;
+            }
+
+            .fixed_model {
+                width: 22px;
+                height: 22px;
+                position: absolute;
+                transition: all 0.3s ease 0s;
+                background-size: cover;
+                border-radius: 6px;
+                border: 3px solid black;
+            }
+
+            .PCRightArea {
+                display: none;
+            }
+            
+
+            .keyarea {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                height: 80px;
+            }
+
+            .keyarea .key {
+                text-align: center;
+                margin: 10px;
+                line-height: 50px;
+                width: 70px;
+                height: 50px;
+                color: #fda73c;
+                border: 5px dotted #fda73c;
+                float: left;
+                font-size: 30px;
+                border-radius: 5px;
+            }
+
+            .keyarea .key:active {
+                text-align: center;
+                margin: 10px;
+                line-height: 50px;
+                width: 70px;
+                height: 50px;
+                color: rgba(0, 0, 0, 0.5);
+                border: 5px dotted rgba(0, 0, 0, 0.3);
+                background: rgb(231, 56, 56);
+                float: left;
+                font-size: 25px;
+            }
+
+            .PhoneButton {
+                width: 90%;
+                border: 8px solid #fda73c;
+                border-radius: 20px;
+                margin-left: 5%;
+                margin-right: 5%;
+                display: flex;
+                justify-content: center;
+                background: #d07300
+            }
+
+            .PhoneButton .BottomLevel {
+                width: 100px;
+                height: 40px;
+                margin: 0 5px 5px 5px;
+                float: left;
+                line-height: 40px;
+                text-align: center;
+                color: wheat;
+                font-weight: 900;
+                font-size: 17px;
+                font-family: Microsoft Yahei;
+            }
+
+            .PhoneButton .an {
+                width: 95px;
+                height: 40px;
+                margin: 0 5px 5px 20px;
+                float: left;
+                line-height: 40px;
+                text-align: center;
+                font-weight: 900;
+                color: wheat;
+                font-family: Microsoft Yahei;
+                font-size: 17px;
+                position: relative;
+            }
+            .PhoneButton .an img{
+                width: 20px;
+                height: 20px;
+                border-radius: 10px;
+                padding-right: 5px;
+                padding-top: 5px;
+                position: absolute;
+                top: 6px;
+                left: -7px;
+            }
+            #MiddleArea {
+                z-index: 400;
+                width: 200px;
+                height: 140px;
+                position: fixed;
+                background: #faab4a;
+                border-radius: 20px;
+                display: none;
+            }
+
+            #MiddleArea .Popup {
+                width: 180px;
+                height: 120px;
+                margin: 10px;
+                background: #d07300;
+                border-radius: 20px;
+            }
+
+            #MiddleArea .Popup .result {
+                text-align: center;
+                width: 100%;
+                height: 50px;
+                line-height: 50px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+                font-size: 15px;
+            }
+
+            #MiddleArea .Popup .ranking {
+                text-align: center;
+                width: 140px;
+                margin: 10px 20px;
+                height: 40px;
+                line-height: 40px;
+                border-radius: 10px;
+                font-size: 22px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+                background: rgba(255, 0, 0, 0.75);
+            }
+
+            #MiddleArea .Popup .start {
+                text-align: center;
+                width: 140px;
+                margin: 10px 20px;
+                height: 40px;
+                line-height: 40px;
+                border-radius: 10px;
+                font-size: 22px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+                background: greenyellow;
+            }
+            #SettingArea{
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 450;
+                display: none;
+            }
+            #SettingContainer{
+                z-index: 451;
+                width: 200px;
+                height: 130px;
+                position: fixed;
+                background: #faab4a;
+                border: 10px solid saddlebrown;
+            }
+            #SettingContainer .SettingPopup{
+                height: 40px;
+                width: 100%;
+                background: #ef9321;
+            }
+            #SettingContainer .SettingPopup .Settingtitle {
+                height: 40px;
+                width: 80%;
+                float: left;
+                line-height: 40px;
+                text-align: center;
+                font-size: 25px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+            }
+            .Setting{
+                float: left;
+                text-align: left;
+                height: 40px;
+                width: 140px;
+                line-height: 40px;
+                font-size: 20px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+                margin-left: 10px;
+            }
+            .Settingselect{
+                text-align: left;
+                float: left;
+                height: 20px;
+                width: 20px;
+                line-height: 20px;
+                border: 3px solid white;
+                font-size: 20px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+                margin-right: 20px;
+                margin-top: 7px;
+            }
+            #SettingContainer .SettingPopup #SettingClose {
+                float: left;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                width: 20%;
+                font-size: 20px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+            }
+            #RankingArea {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                display: none;
+                z-index: 500;
+            }
+
+            #Ranking {
+                z-index: 501;
+                width: 300px;
+                height: 500px;
+                position: fixed;
+                background: #faab4a;
+                border: 10px solid saddlebrown;
+            }
+
+            #Ranking .RankingTop {
+                height: 60px;
+                width: 100%;
+                background: #ef9321;
+            }
+
+            #Ranking .RankingTop .Rankingtitle {
+                height: 60px;
+                width: 80%;
+                float: left;
+                line-height: 60px;
+                text-align: center;
+                font-size: 30px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+
+            }
+
+            #Ranking .RankingTop #RankingClose {
+                float: left;
+                height: 60px;
+                line-height: 60px;
+                text-align: center;
+                width: 20%;
+                font-size: 30px;
+                color: white;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+            }
+
+            #Ranking .RangkingPoint {
+                height: 400px;
+                width: 260px;
+                margin: 15px 20px 15px 20px;
+                background: #ffdeb4;
+                border-radius: 20px;
+            }
+
+            #Ranking .RangkingPoint ul {
+                list-style: none;
+                width: 75%;
+                height: 80%;
+                margin: 20px;
+                padding-top: 20px;
+                background: #ffdeb4;
+            }
+
+            #Ranking .RangkingPoint ul li:nth-child(1) {
+                color: rgb(255, 185, 0);
+            }
+            #Ranking .RangkingPoint ul li:nth-child(1) div{
+                line-height: 35px;
+                text-align: left;
+                float: left;
+                width: 68%;
+                padding: 0;
+            }
+
+            #Ranking .RangkingPoint ul li:nth-child(2) {
+                color: #acacac;
+            }
+            #Ranking .RangkingPoint ul li:nth-child(2) div{
+                line-height: 35px;
+                text-align: left;
+                float: left;
+                width: 68%;
+                padding: 0;
+            }
+
+            #Ranking .RangkingPoint ul li:nth-child(3) {
+                color: #f7894a;
+            }
+            #Ranking .RangkingPoint ul li:nth-child(3) div{
+                line-height: 35px;
+                text-align: left;
+                float: left;
+                width: 68%;
+                padding: 0;
+            }
+
+            #Ranking .RangkingPoint li:nth-of-type(odd) {
+                line-height: 35px;
+                height: 35px;
+                font-size: 20px;
+                color: #ffffff;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+                text-align: right;
+                display: block;
+                margin-right: 30px;
+                padding-right: 20px;
+                padding-left: 15px;
+                background: #fdd7a6;
+            }
+
+            #Ranking .RangkingPoint li:nth-of-type(even) {
+                line-height: 35px;
+                height: 35px;
+                font-size: 20px;
+                color: white;
+                background: #fda86c;
+                font-family: Microsoft Yahei;
+                font-weight: 900;
+                text-align: right;
+                display: block;
+                margin-right: 30px;
+                padding-right: 20px;
+                padding-left: 15px;
+            }
+
+            #Ranking .RangkingPoint ul li div {
+                line-height: 35px;
+                text-align: left;
+                padding-left: 5px;
+                float: left;
+                width: 68%;
+            }
+        }
